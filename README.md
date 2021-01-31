@@ -13,6 +13,7 @@ A bank is interested in predicting which customers are likely to default on loan
 + scikit learn
 + keras
 + Tensorflow 2.0 or higher
++ xgboost
 
 
 ### Files in the repository
