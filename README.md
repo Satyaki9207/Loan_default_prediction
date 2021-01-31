@@ -26,9 +26,10 @@ A bank is interested in predicting which customers are likely to default on loan
 
 ### How to use the model
 + load dependencies in a jupyter notebook  
-</code> model=keras.models.load_model(credit_default.h5)  
+```python
+ model=keras.models.load_model(credit_default.h5)  
        pred= model.predict(X_test) 
- pred=[1 if x>0.55 else 0 for x in pred] </code>
+ pred=[1 if x>0.55 else 0 for x in pred] ```
 
 
 
