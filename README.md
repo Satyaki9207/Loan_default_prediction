@@ -21,7 +21,16 @@ A bank is interested in predicting which customers are likely to default on loan
 + cs-training.csv -- file containing training data
 + cs-test.csv  -- file containing test data
 + Data Dictionary.xls -- file containing variable descriptions
++ Predictions.csv -- file containing predictions for cs-test.csv
++ credit_default.h5 -- pretrained model for making predictions
+
+### How to use the model
++ load dependencies in a jupyter notebook  
+'model=keras.models.load_model(credit_default.h5)  
+ pred= model.predict(X_test) 
+ pred=[1 if x>0.55 else 0 for x in pred]`
 
 
 
 ### Results
+A person's age and past history of late payments are the best indicators of credit default
