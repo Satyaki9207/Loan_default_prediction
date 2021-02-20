@@ -13,7 +13,7 @@
   <body>
     <h2>Credit Default prediction</h2>
 
-    <form action="{{ url_for('predict')}}" method="post">
+    <form action="{{ url_for('predict')}}" method="POST">
       <div class='row ml-2'>
 
           <div class='col-4'>
@@ -85,7 +85,7 @@
         <button type="submit" class="btn btn-primary">Submit</button>
       </div>
       </form>
-      <br><br><h3>{{ prediction_text }}<h3></h3>
+      <br><br><h3>{{ prediction_texts}}<h3></h3>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

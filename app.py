@@ -11,6 +11,7 @@ import pickle
 import numpy as np
 import sklearn
 from sklearn.preprocessing import StandardScaler
+from joblib import load
 app = Flask(__name__)
 model = pickle.load(open('xgb_model.pkl', 'rb'))
 
@@ -18,11 +19,11 @@ model = pickle.load(open('xgb_model.pkl', 'rb'))
 def Home():
     return render_template('front_end.html')
 
-standard_to = StandardScaler()
+sc1=load('stan_scaler.bin')
 @app.route("/predict", methods=['POST'])
 def predict():
-    
-    if request.method == 'POST':
+    if request.method=='POST':
+        #print('it has entered post')
         n_unsec = float(request.form['n_unsec'])
         age=float(request.form['age'])
         debt_ratio=float(request.form['debt_ratio'])
@@ -33,15 +34,15 @@ def predict():
         n_60_89=int(request.form['n_60_89'])
         n_dep=int(request.form['n_dep'])
         n_30_59=int(request.form['n_30_59'])
-        
-        
-        
-        prediction=model.predict(np.array([[n_unsec,age,n_30_59,debt_ratio,income,n_open_lines,n_90,n_real,n_60_89,n_dep]]))
+        prediction=model.predict(sc1.transform(np.array([[n_unsec,age,n_30_59,debt_ratio,income,n_open_lines,n_90,n_real,n_60_89,n_dep]])))
         output=prediction[0]
-        if output==0:
-            return render_template('front_end.html',prediction_texts="Customer won't default")
+        #print(output)
+    
+        
+        if output==1:
+            return render_template('front_end.html',prediction_texts="Customer will default")
         else:
-            return render_template('front_end.html',prediction_text="Customer will default")
+            return render_template('front_end.html',prediction_texts="Customer won't default")
     else:
         return render_template('front_end.html')
 
